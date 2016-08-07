@@ -10,35 +10,53 @@
 
 module.exports = (robot) ->
 
-  # robot.hear /badger/i, (res) ->
-  #   res.send "Badgers? BADGERS? WE DON'T NEED NO STINKIN BADGERS"
-  #
-  # robot.respond /open the (.*) doors/i, (res) ->
-  #   doorType = res.match[1]
-  #   if doorType is "pod bay"
-  #     res.reply "I'm afraid I can't let you do that."
-  #   else
-  #     res.reply "Opening #{doorType} doors"
-  #
-  # robot.hear /I like pie/i, (res) ->
-  #   res.emote "makes a freshly baked pie"
-  #
-  # lulz = ['lol', 'rofl', 'lmao']
-  #
-  # robot.respond /lulz/i, (res) ->
-  #   res.send res.random lulz
-  #
-  # robot.topic (res) ->
-  #   res.send "#{res.message.text}? That's a Paddlin'"
-  #
-  #
-  # enterReplies = ['Hi', 'Target Acquired', 'Firing', 'Hello friend.', 'Gotcha', 'I see you']
-  # leaveReplies = ['Are you still there?', 'Target lost', 'Searching']
-  #
-  # robot.enter (res) ->
-  #   res.send res.random enterReplies
-  # robot.leave (res) ->
-  #   res.send res.random leaveReplies
+  robot.respond /hello/i (res) ->
+    res.send "Hi diddly-ho, neighborino!"
+
+  robot.respond /\thanks\b/ (res) ->
+    res.send "Thankily-dankily!"
+
+  robot.respond /Aw, is this gonna be about Jesus?/ (res) ->
+    res.send "I'm as permissive as the next parent. I mean, just yesterday I let Todd buy some Red Hots with a cartoon devil on the box!"
+
+  robot.hear /thank god/i, (res) ->
+    res.send "Boys, before we eat, don't forget to thank the lord for this bountiful-- PENIS?!?!"
+
+  robot.hear /\count\b/, (msg) ->
+     robot.brain.set('count_up',
+    (robot.brain.get('count_up') || 0) + 1
+    if count_up is 666
+      res.send "Oh, dear Lord! Not Satan!!!"
+      else res.send 'count_up'
+  )
+
+  sexy = ['showering', 'skiing', 'abs']
+
+  robot.hear /Stupid sexy Flanders!/i, (res) ->
+    res.send res.random sexy
+
+  robot.hear /hell/i, (res)->
+    res.send "Aw, hell, diddly ding-dong crap!!"
+
+
+  robot.respond /I'm going to (.*)/i, (res) ->
+    place = res.match[0]
+    if place is "church"
+      res.reply "Of course! A daily dose of Vitamin Church!"
+    else
+      res.reply "It's Sunday! You can't go to #{place}!"
+
+  robot.topic (res) ->
+    res.send "We're changing the topic to #{res.message.text}? Well, I'll be darn-diddly-arned!"
+
+
+  enterReplies = ['Well, you sure are looking chipper this morning!', 'Howdy-do, neighborino!', 'I welcome you to the neighborhood!', 'Affordable tract housing made us neighbors, but you made us friends.']
+  leaveReplies = ['Bye diddly-eye!', 'Toodly-doo!', 'Godspeed, little doodle!']
+
+  robot.enter (res) ->
+    res.send res.random enterReplies
+  robot.leave (res) ->
+    res.send res.random leaveReplies
   #
   # answer = process.env.HUBOT_ANSWER_TO_THE_ULTIMATE_QUESTION_OF_LIFE_THE_UNIVERSE_AND_EVERYTHING
   #
